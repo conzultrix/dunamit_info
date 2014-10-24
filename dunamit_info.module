@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ *
+ */
+function dunamit_info_block_info() {
+  $blocks['dunamit_headoffice'] = array(
+    'info' => t('Dunamit Head Office'),
+    'cache' => DRUPAL_NO_CACHE
+    // DRUPAL_CACHE_PER_ROLE will be assumed if not set.
+  );
+  
+  $blocks['dunamit_branches'] = array(
+    'info' => t('Dunamit Branch Offices'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['telephone'] = array(
+    'info' => t('Telephone'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ */
+function dunamit_info_block_view($delta = '') {
+  $block = array();
+  
+  switch ($delta) {
+    case 'dunamit_headoffice':
+      $content = '<p> 2 Konwe Street, <br />Uda Layout<br />By Holy Ghost Movement Sign Post<br />Asaba,<br />Delta State</p>';
+      if (!empty($content)) {
+        $block['subject'] = t('Head Office');
+        $block['content'] = array(
+          '#prefix' => '<div class="head-office">',
+          '#suffix' => '</div>',
+          '#markup' => $content,
+        );
+      }
+      break;
+    
+    case 'dunamit_branches':
+      $content = '<p>Songo-Ota<br />Benin City <br /> Agbor <br />Kaduna </p>';
+      if (!empty($content)) {
+        $block['subject'] = t('Branch Offices');
+        $block['content'] = array(
+          '#prefix' => '<div class="branch-offices">',
+          '#suffix' => '</div>',
+          '#markup' => $content,
+        );
+      }
+      break;
+    
+    case 'telephone':
+      $content = '<div class="telephone">+2347085129307</div>';
+      if (!empty($content)) {
+        $block['subject'] = t('Telephone');
+        $block['content'] = array(
+          '#markup' => $content,
+        );
+      }
+      break;
+  }
+  
+  return $block;
+}

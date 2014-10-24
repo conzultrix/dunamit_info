@@ -1,0 +1,6 @@
+name = Dunamit Info
+description = Provides basic information, address, phone etc., about Dunamit
+package = Dunamit
+core = 7.x
+version = 7.x-0.1-alpha1
+project = dunamit_info
